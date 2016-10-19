@@ -22,23 +22,11 @@
 
 package functions
 
-import (
-	"net/http"
-)
+type NewTask struct {
 
-type APIResponse struct {
-	*http.Response
-	Message string `json:"message,omitempty"`
-}
+	// Name of Docker image to use. This is optional and can be used to override the image defined at the group level.
+	Image string `json:"image,omitempty"`
 
-func NewAPIResponse(r *http.Response) *APIResponse {
-
-	response := &APIResponse{Response: r}
-	return response
-}
-
-func NewAPIResponseWithError(errorMessage string) *APIResponse {
-
-	response := &APIResponse{Message: errorMessage}
-	return response
+	// Payload for the task. This is what you pass into each task to make it do something.
+	Payload string `json:"payload,omitempty"`
 }

@@ -52,7 +52,7 @@ Create a new route
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **app** | **string**| name of the app. | 
- **body** | [**NewRoutesWrapper**](NewRoutesWrapper.md)| Array of routes to post. | 
+ **body** | [**RoutesWrapper**](RoutesWrapper.md)| Array of routes to post. | 
 
 ### Return type
 

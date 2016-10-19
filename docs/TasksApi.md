@@ -8,7 +8,7 @@ Method | HTTP request | Description
 
 
 # **TasksGet**
-> TasksWrapper TasksGet($n)
+> TaskWrapper TasksGet($n)
 
 Get next task.
 
@@ -23,7 +23,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**TasksWrapper**](TasksWrapper.md)
+[**TaskWrapper**](TaskWrapper.md)
 
 ### Authorization
 
