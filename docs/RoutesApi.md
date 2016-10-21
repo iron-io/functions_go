@@ -40,7 +40,7 @@ No authorization required
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **AppsAppRoutesPost**
-> RoutesWrapper AppsAppRoutesPost($app, $body)
+> RouteWrapper AppsAppRoutesPost($app, $body)
 
 Create new Route
 
@@ -52,11 +52,11 @@ Create a new route
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **app** | **string**| name of the app. | 
- **body** | [**RoutesWrapper**](RoutesWrapper.md)| Array of routes to post. | 
+ **body** | [**RouteWrapper**](RouteWrapper.md)| One route to post. | 
 
 ### Return type
 
-[**RoutesWrapper**](RoutesWrapper.md)
+[**RouteWrapper**](RouteWrapper.md)
 
 ### Authorization
 
