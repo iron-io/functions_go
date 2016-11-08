@@ -3,7 +3,7 @@
     <groupId>com.wordnik</groupId>
     <artifactId>Gofunctions</artifactId>
     <packaging>pom</packaging>
-    <version>0.0.12</version>
+    <version>0.0.13</version>
     <name>Gofunctions</name>
  <build>
         <plugins>
