@@ -9,7 +9,7 @@ Name | Type | Description | Notes
 **Headers** | **string** | Map of http headers that will be sent with the response | [optional] [default to null]
 **Memory** | **int64** | Max usable memory for this route (MiB). | [optional] [default to null]
 **Type_** | **string** | Route type | [optional] [default to null]
-**Config** | **map[string]string** | Route configuration | [optional] [default to null]
+**Config** | **map[string]string** | Route configuration - overrides application configuration | [optional] [default to null]
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

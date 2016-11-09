@@ -42,6 +42,6 @@ type Route struct {
 	// Route type
 	Type_ string `json:"type,omitempty"`
 
-	// Route configuration
+	// Route configuration - overrides application configuration
 	Config map[string]string `json:"config,omitempty"`
 }
