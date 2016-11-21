@@ -8,6 +8,7 @@ Method | HTTP request | Description
 [**AppsAppRoutesPost**](RoutesApi.md#AppsAppRoutesPost) | **Post** /apps/{app}/routes | Create new Route
 [**AppsAppRoutesRouteDelete**](RoutesApi.md#AppsAppRoutesRouteDelete) | **Delete** /apps/{app}/routes/{route} | Deletes the route
 [**AppsAppRoutesRouteGet**](RoutesApi.md#AppsAppRoutesRouteGet) | **Get** /apps/{app}/routes/{route} | Gets route by name
+[**AppsAppRoutesRoutePut**](RoutesApi.md#AppsAppRoutesRoutePut) | **Put** /apps/{app}/routes/{route} | Update a Route
 
 
 # **AppsAppRoutesGet**
@@ -113,6 +114,37 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **app** | **string**| Name of app for this set of routes. | 
  **route** | **string**| Route name | 
+
+### Return type
+
+[**RouteWrapper**](RouteWrapper.md)
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
+ - **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **AppsAppRoutesRoutePut**
+> RouteWrapper AppsAppRoutesRoutePut($app, $route, $body)
+
+Update a Route
+
+Update a route
+
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **app** | **string**| name of the app. | 
+ **route** | **string**| route path. | 
+ **body** | [**RouteWrapper**](RouteWrapper.md)| One route to post. | 
 
 ### Return type
 
