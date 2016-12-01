@@ -28,37 +28,36 @@ import (
 	"encoding/json"
 )
 
-type TasksApi struct {
+type VersionApi struct {
 	Configuration *Configuration
 }
 
-func NewTasksApi() *TasksApi {
+func NewVersionApi() *VersionApi {
 	configuration := NewConfiguration()
-	return &TasksApi{
+	return &VersionApi{
 		Configuration: configuration,
 	}
 }
 
-func NewTasksApiWithBasePath(basePath string) *TasksApi {
+func NewVersionApiWithBasePath(basePath string) *VersionApi {
 	configuration := NewConfiguration()
 	configuration.BasePath = basePath
 
-	return &TasksApi{
+	return &VersionApi{
 		Configuration: configuration,
 	}
 }
 
 /**
- * Get next task.
- * Gets the next task in the queue, ready for processing. Consumers should start processing tasks in order. No other consumer can retrieve this task.
+ * Get daemon version.
  *
- * @return *TaskWrapper
+ * @return *Version
  */
-func (a TasksApi) TasksGet() (*TaskWrapper, *APIResponse, error) {
+func (a VersionApi) VersionGet() (*Version, *APIResponse, error) {
 
 	var localVarHttpMethod = strings.ToUpper("Get")
 	// create path and map variables
-	localVarPath := a.Configuration.BasePath + "/tasks"
+	localVarPath := a.Configuration.BasePath + "/version"
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -89,12 +88,12 @@ func (a TasksApi) TasksGet() (*TaskWrapper, *APIResponse, error) {
 	if localVarHttpHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHttpHeaderAccept
 	}
-	var successPayload = new(TaskWrapper)
+	var successPayload = new(Version)
 	localVarHttpResponse, err := a.Configuration.APIClient.CallAPI(localVarPath, localVarHttpMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFileName, localVarFileBytes)
 
 	var localVarURL, _ = url.Parse(localVarPath)
 	localVarURL.RawQuery = localVarQueryParams.Encode()
-	var localVarAPIResponse = &APIResponse{Operation: "TasksGet", Method: localVarHttpMethod, RequestURL: localVarURL.String()}
+	var localVarAPIResponse = &APIResponse{Operation: "VersionGet", Method: localVarHttpMethod, RequestURL: localVarURL.String()}
 	if localVarHttpResponse != nil {
 		localVarAPIResponse.Response = localVarHttpResponse.RawResponse
 		localVarAPIResponse.Payload = localVarHttpResponse.Body()

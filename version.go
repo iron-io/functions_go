@@ -22,9 +22,7 @@
 
 package functions
 
-type RoutesWrapper struct {
+type Version struct {
 
-	Routes []Route `json:"routes,omitempty"`
-
-	Error_ ErrorBody `json:"error,omitempty"`
+	Version string `json:"version,omitempty"`
 }
