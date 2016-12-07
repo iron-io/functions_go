@@ -139,7 +139,7 @@ func (a *Client) PostApps(params *PostAppsParams) (*PostAppsOK, error) {
 }
 
 /*
-PutAppsApp creates update a app
+PutAppsApp updates an app
 
 You can set app level settings here.
 */
