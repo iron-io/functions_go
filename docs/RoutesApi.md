@@ -8,7 +8,7 @@ Method | HTTP request | Description
 [**AppsAppRoutesPost**](RoutesApi.md#AppsAppRoutesPost) | **Post** /apps/{app}/routes | Create new Route
 [**AppsAppRoutesRouteDelete**](RoutesApi.md#AppsAppRoutesRouteDelete) | **Delete** /apps/{app}/routes/{route} | Deletes the route
 [**AppsAppRoutesRouteGet**](RoutesApi.md#AppsAppRoutesRouteGet) | **Get** /apps/{app}/routes/{route} | Gets route by name
-[**AppsAppRoutesRoutePut**](RoutesApi.md#AppsAppRoutesRoutePut) | **Put** /apps/{app}/routes/{route} | Update a Route
+[**AppsAppRoutesRoutePatch**](RoutesApi.md#AppsAppRoutesRoutePatch) | **Patch** /apps/{app}/routes/{route} | Update a Route
 
 
 # **AppsAppRoutesGet**
@@ -45,7 +45,7 @@ No authorization required
 
 Create new Route
 
-Create a new route
+Create a new route in an app, if app doesn't exists, it creates the app
 
 
 ### Parameters
@@ -130,8 +130,8 @@ No authorization required
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-# **AppsAppRoutesRoutePut**
-> RouteWrapper AppsAppRoutesRoutePut($app, $route, $body)
+# **AppsAppRoutesRoutePatch**
+> RouteWrapper AppsAppRoutesRoutePatch($app, $route, $body)
 
 Update a Route
 
