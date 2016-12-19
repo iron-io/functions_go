@@ -6,7 +6,7 @@ Method | HTTP request | Description
 ------------- | ------------- | -------------
 [**AppsAppDelete**](AppsApi.md#AppsAppDelete) | **Delete** /apps/{app} | Delete an app.
 [**AppsAppGet**](AppsApi.md#AppsAppGet) | **Get** /apps/{app} | Get information for a app.
-[**AppsAppPut**](AppsApi.md#AppsAppPut) | **Put** /apps/{app} | Create/update a app.
+[**AppsAppPatch**](AppsApi.md#AppsAppPatch) | **Patch** /apps/{app} | Updates an app.
 [**AppsGet**](AppsApi.md#AppsGet) | **Get** /apps | Get all app names.
 [**AppsPost**](AppsApi.md#AppsPost) | **Post** /apps | Post new app
 
@@ -69,10 +69,10 @@ No authorization required
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-# **AppsAppPut**
-> AppWrapper AppsAppPut($app, $body)
+# **AppsAppPatch**
+> AppWrapper AppsAppPatch($app, $body)
 
-Create/update a app.
+Updates an app.
 
 You can set app level settings here. 
 
