@@ -110,6 +110,35 @@ func (a *Client) GetAppsApp(params *GetAppsAppParams) (*GetAppsAppOK, error) {
 }
 
 /*
+PatchAppsApp updates an app
+
+You can set app level settings here.
+*/
+func (a *Client) PatchAppsApp(params *PatchAppsAppParams) (*PatchAppsAppOK, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewPatchAppsAppParams()
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "PatchAppsApp",
+		Method:             "PATCH",
+		PathPattern:        "/apps/{app}",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"http", "https"},
+		Params:             params,
+		Reader:             &PatchAppsAppReader{formats: a.formats},
+		Context:            params.Context,
+	})
+	if err != nil {
+		return nil, err
+	}
+	return result.(*PatchAppsAppOK), nil
+
+}
+
+/*
 PostApps posts new app
 
 Insert a new app
@@ -135,35 +164,6 @@ func (a *Client) PostApps(params *PostAppsParams) (*PostAppsOK, error) {
 		return nil, err
 	}
 	return result.(*PostAppsOK), nil
-
-}
-
-/*
-PutAppsApp updates an app
-
-You can set app level settings here.
-*/
-func (a *Client) PutAppsApp(params *PutAppsAppParams) (*PutAppsAppOK, error) {
-	// TODO: Validate the params before sending
-	if params == nil {
-		params = NewPutAppsAppParams()
-	}
-
-	result, err := a.transport.Submit(&runtime.ClientOperation{
-		ID:                 "PutAppsApp",
-		Method:             "PUT",
-		PathPattern:        "/apps/{app}",
-		ProducesMediaTypes: []string{"application/json"},
-		ConsumesMediaTypes: []string{"application/json"},
-		Schemes:            []string{"http", "https"},
-		Params:             params,
-		Reader:             &PutAppsAppReader{formats: a.formats},
-		Context:            params.Context,
-	})
-	if err != nil {
-		return nil, err
-	}
-	return result.(*PutAppsAppOK), nil
 
 }
 

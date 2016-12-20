@@ -5,6 +5,7 @@ package models
 
 import (
 	strfmt "github.com/go-openapi/strfmt"
+	"github.com/go-openapi/swag"
 
 	"github.com/go-openapi/errors"
 	"github.com/go-openapi/validate"
@@ -17,6 +18,9 @@ type AppWrapper struct {
 	// app
 	// Required: true
 	App *App `json:"app"`
+
+	// error
+	Error *ErrorBody `json:"error,omitempty"`
 }
 
 // Validate validates this app wrapper
@@ -24,6 +28,11 @@ func (m *AppWrapper) Validate(formats strfmt.Registry) error {
 	var res []error
 
 	if err := m.validateApp(formats); err != nil {
+		// prop
+		res = append(res, err)
+	}
+
+	if err := m.validateError(formats); err != nil {
 		// prop
 		res = append(res, err)
 	}
@@ -43,6 +52,22 @@ func (m *AppWrapper) validateApp(formats strfmt.Registry) error {
 	if m.App != nil {
 
 		if err := m.App.Validate(formats); err != nil {
+			return err
+		}
+	}
+
+	return nil
+}
+
+func (m *AppWrapper) validateError(formats strfmt.Registry) error {
+
+	if swag.IsZero(m.Error) { // not required
+		return nil
+	}
+
+	if m.Error != nil {
+
+		if err := m.Error.Validate(formats); err != nil {
 			return err
 		}
 	}

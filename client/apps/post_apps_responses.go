@@ -37,8 +37,8 @@ func (o *PostAppsReader) ReadResponse(response runtime.ClientResponse, consumer 
 		}
 		return nil, result
 
-	case 500:
-		result := NewPostAppsInternalServerError()
+	case 409:
+		result := NewPostAppsConflict()
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
 			return nil, err
 		}
@@ -111,24 +111,24 @@ func (o *PostAppsBadRequest) readResponse(response runtime.ClientResponse, consu
 	return nil
 }
 
-// NewPostAppsInternalServerError creates a PostAppsInternalServerError with default headers values
-func NewPostAppsInternalServerError() *PostAppsInternalServerError {
-	return &PostAppsInternalServerError{}
+// NewPostAppsConflict creates a PostAppsConflict with default headers values
+func NewPostAppsConflict() *PostAppsConflict {
+	return &PostAppsConflict{}
 }
 
-/*PostAppsInternalServerError handles this case with default header values.
+/*PostAppsConflict handles this case with default header values.
 
-Could not accept app due to internal error.
+App already exists.
 */
-type PostAppsInternalServerError struct {
+type PostAppsConflict struct {
 	Payload *models.Error
 }
 
-func (o *PostAppsInternalServerError) Error() string {
-	return fmt.Sprintf("[POST /apps][%d] postAppsInternalServerError  %+v", 500, o.Payload)
+func (o *PostAppsConflict) Error() string {
+	return fmt.Sprintf("[POST /apps][%d] postAppsConflict  %+v", 409, o.Payload)
 }
 
-func (o *PostAppsInternalServerError) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+func (o *PostAppsConflict) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
 
 	o.Payload = new(models.Error)
 

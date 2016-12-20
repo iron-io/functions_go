@@ -18,6 +18,9 @@ type AppsWrapper struct {
 	// apps
 	// Required: true
 	Apps []*App `json:"apps"`
+
+	// error
+	Error *ErrorBody `json:"error,omitempty"`
 }
 
 // Validate validates this apps wrapper
@@ -25,6 +28,11 @@ func (m *AppsWrapper) Validate(formats strfmt.Registry) error {
 	var res []error
 
 	if err := m.validateApps(formats); err != nil {
+		// prop
+		res = append(res, err)
+	}
+
+	if err := m.validateError(formats); err != nil {
 		// prop
 		res = append(res, err)
 	}
@@ -54,6 +62,22 @@ func (m *AppsWrapper) validateApps(formats strfmt.Registry) error {
 			}
 		}
 
+	}
+
+	return nil
+}
+
+func (m *AppsWrapper) validateError(formats strfmt.Registry) error {
+
+	if swag.IsZero(m.Error) { // not required
+		return nil
+	}
+
+	if m.Error != nil {
+
+		if err := m.Error.Validate(formats); err != nil {
+			return err
+		}
 	}
 
 	return nil
