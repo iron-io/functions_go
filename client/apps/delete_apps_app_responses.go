@@ -5,10 +5,13 @@ package apps
 
 import (
 	"fmt"
+	"io"
 
 	"github.com/go-openapi/runtime"
 
 	strfmt "github.com/go-openapi/strfmt"
+
+	"github.com/iron-io/functions_go/models"
 )
 
 // DeleteAppsAppReader is a Reader for the DeleteAppsApp structure.
@@ -27,8 +30,19 @@ func (o *DeleteAppsAppReader) ReadResponse(response runtime.ClientResponse, cons
 		}
 		return result, nil
 
+	case 404:
+		result := NewDeleteAppsAppNotFound()
+		if err := result.readResponse(response, consumer, o.formats); err != nil {
+			return nil, err
+		}
+		return nil, result
+
 	default:
-		return nil, runtime.NewAPIError("unknown error", response, response.Code())
+		result := NewDeleteAppsAppDefault(response.Code())
+		if err := result.readResponse(response, consumer, o.formats); err != nil {
+			return nil, err
+		}
+		return nil, result
 	}
 }
 
@@ -49,6 +63,73 @@ func (o *DeleteAppsAppOK) Error() string {
 }
 
 func (o *DeleteAppsAppOK) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
+	return nil
+}
+
+// NewDeleteAppsAppNotFound creates a DeleteAppsAppNotFound with default headers values
+func NewDeleteAppsAppNotFound() *DeleteAppsAppNotFound {
+	return &DeleteAppsAppNotFound{}
+}
+
+/*DeleteAppsAppNotFound handles this case with default header values.
+
+App does not exist.
+*/
+type DeleteAppsAppNotFound struct {
+	Payload *models.Error
+}
+
+func (o *DeleteAppsAppNotFound) Error() string {
+	return fmt.Sprintf("[DELETE /apps/{app}][%d] deleteAppsAppNotFound  %+v", 404, o.Payload)
+}
+
+func (o *DeleteAppsAppNotFound) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
+	o.Payload = new(models.Error)
+
+	// response payload
+	if err := consumer.Consume(response.Body(), o.Payload); err != nil && err != io.EOF {
+		return err
+	}
+
+	return nil
+}
+
+// NewDeleteAppsAppDefault creates a DeleteAppsAppDefault with default headers values
+func NewDeleteAppsAppDefault(code int) *DeleteAppsAppDefault {
+	return &DeleteAppsAppDefault{
+		_statusCode: code,
+	}
+}
+
+/*DeleteAppsAppDefault handles this case with default header values.
+
+Unexpected error
+*/
+type DeleteAppsAppDefault struct {
+	_statusCode int
+
+	Payload *models.Error
+}
+
+// Code gets the status code for the delete apps app default response
+func (o *DeleteAppsAppDefault) Code() int {
+	return o._statusCode
+}
+
+func (o *DeleteAppsAppDefault) Error() string {
+	return fmt.Sprintf("[DELETE /apps/{app}][%d] DeleteAppsApp default  %+v", o._statusCode, o.Payload)
+}
+
+func (o *DeleteAppsAppDefault) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
+	o.Payload = new(models.Error)
+
+	// response payload
+	if err := consumer.Consume(response.Body(), o.Payload); err != nil && err != io.EOF {
+		return err
+	}
 
 	return nil
 }

@@ -30,6 +30,13 @@ func (o *GetAppsAppRoutesReader) ReadResponse(response runtime.ClientResponse, c
 		}
 		return result, nil
 
+	case 404:
+		result := NewGetAppsAppRoutesNotFound()
+		if err := result.readResponse(response, consumer, o.formats); err != nil {
+			return nil, err
+		}
+		return nil, result
+
 	default:
 		result := NewGetAppsAppRoutesDefault(response.Code())
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
@@ -59,6 +66,35 @@ func (o *GetAppsAppRoutesOK) Error() string {
 func (o *GetAppsAppRoutesOK) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
 
 	o.Payload = new(models.RoutesWrapper)
+
+	// response payload
+	if err := consumer.Consume(response.Body(), o.Payload); err != nil && err != io.EOF {
+		return err
+	}
+
+	return nil
+}
+
+// NewGetAppsAppRoutesNotFound creates a GetAppsAppRoutesNotFound with default headers values
+func NewGetAppsAppRoutesNotFound() *GetAppsAppRoutesNotFound {
+	return &GetAppsAppRoutesNotFound{}
+}
+
+/*GetAppsAppRoutesNotFound handles this case with default header values.
+
+App does not exist.
+*/
+type GetAppsAppRoutesNotFound struct {
+	Payload *models.Error
+}
+
+func (o *GetAppsAppRoutesNotFound) Error() string {
+	return fmt.Sprintf("[GET /apps/{app}/routes][%d] getAppsAppRoutesNotFound  %+v", 404, o.Payload)
+}
+
+func (o *GetAppsAppRoutesNotFound) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
+	o.Payload = new(models.Error)
 
 	// response payload
 	if err := consumer.Consume(response.Body(), o.Payload); err != nil && err != io.EOF {

@@ -110,11 +110,40 @@ func (a *Client) GetAppsAppRoutesRoute(params *GetAppsAppRoutesRouteParams) (*Ge
 }
 
 /*
+PatchAppsAppRoutesRoute updates a route
+
+Update a route
+*/
+func (a *Client) PatchAppsAppRoutesRoute(params *PatchAppsAppRoutesRouteParams) (*PatchAppsAppRoutesRouteOK, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewPatchAppsAppRoutesRouteParams()
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "PatchAppsAppRoutesRoute",
+		Method:             "PATCH",
+		PathPattern:        "/apps/{app}/routes/{route}",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"http", "https"},
+		Params:             params,
+		Reader:             &PatchAppsAppRoutesRouteReader{formats: a.formats},
+		Context:            params.Context,
+	})
+	if err != nil {
+		return nil, err
+	}
+	return result.(*PatchAppsAppRoutesRouteOK), nil
+
+}
+
+/*
 PostAppsAppRoutes creates new route
 
-Create a new route
+Create a new route in an app, if app doesn't exists, it creates the app
 */
-func (a *Client) PostAppsAppRoutes(params *PostAppsAppRoutesParams) (*PostAppsAppRoutesCreated, error) {
+func (a *Client) PostAppsAppRoutes(params *PostAppsAppRoutesParams) (*PostAppsAppRoutesOK, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
 		params = NewPostAppsAppRoutesParams()
@@ -134,36 +163,7 @@ func (a *Client) PostAppsAppRoutes(params *PostAppsAppRoutesParams) (*PostAppsAp
 	if err != nil {
 		return nil, err
 	}
-	return result.(*PostAppsAppRoutesCreated), nil
-
-}
-
-/*
-PutAppsAppRoutesRoute updates a route
-
-Update a route
-*/
-func (a *Client) PutAppsAppRoutesRoute(params *PutAppsAppRoutesRouteParams) (*PutAppsAppRoutesRouteCreated, error) {
-	// TODO: Validate the params before sending
-	if params == nil {
-		params = NewPutAppsAppRoutesRouteParams()
-	}
-
-	result, err := a.transport.Submit(&runtime.ClientOperation{
-		ID:                 "PutAppsAppRoutesRoute",
-		Method:             "PUT",
-		PathPattern:        "/apps/{app}/routes/{route}",
-		ProducesMediaTypes: []string{"application/json"},
-		ConsumesMediaTypes: []string{"application/json"},
-		Schemes:            []string{"http", "https"},
-		Params:             params,
-		Reader:             &PutAppsAppRoutesRouteReader{formats: a.formats},
-		Context:            params.Context,
-	})
-	if err != nil {
-		return nil, err
-	}
-	return result.(*PutAppsAppRoutesRouteCreated), nil
+	return result.(*PostAppsAppRoutesOK), nil
 
 }
 

@@ -23,8 +23,8 @@ type PostAppsAppRoutesReader struct {
 func (o *PostAppsAppRoutesReader) ReadResponse(response runtime.ClientResponse, consumer runtime.Consumer) (interface{}, error) {
 	switch response.Code() {
 
-	case 201:
-		result := NewPostAppsAppRoutesCreated()
+	case 200:
+		result := NewPostAppsAppRoutesOK()
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
 			return nil, err
 		}
@@ -37,8 +37,8 @@ func (o *PostAppsAppRoutesReader) ReadResponse(response runtime.ClientResponse, 
 		}
 		return nil, result
 
-	case 500:
-		result := NewPostAppsAppRoutesInternalServerError()
+	case 409:
+		result := NewPostAppsAppRoutesConflict()
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
 			return nil, err
 		}
@@ -53,24 +53,24 @@ func (o *PostAppsAppRoutesReader) ReadResponse(response runtime.ClientResponse, 
 	}
 }
 
-// NewPostAppsAppRoutesCreated creates a PostAppsAppRoutesCreated with default headers values
-func NewPostAppsAppRoutesCreated() *PostAppsAppRoutesCreated {
-	return &PostAppsAppRoutesCreated{}
+// NewPostAppsAppRoutesOK creates a PostAppsAppRoutesOK with default headers values
+func NewPostAppsAppRoutesOK() *PostAppsAppRoutesOK {
+	return &PostAppsAppRoutesOK{}
 }
 
-/*PostAppsAppRoutesCreated handles this case with default header values.
+/*PostAppsAppRoutesOK handles this case with default header values.
 
 Route created
 */
-type PostAppsAppRoutesCreated struct {
+type PostAppsAppRoutesOK struct {
 	Payload *models.RouteWrapper
 }
 
-func (o *PostAppsAppRoutesCreated) Error() string {
-	return fmt.Sprintf("[POST /apps/{app}/routes][%d] postAppsAppRoutesCreated  %+v", 201, o.Payload)
+func (o *PostAppsAppRoutesOK) Error() string {
+	return fmt.Sprintf("[POST /apps/{app}/routes][%d] postAppsAppRoutesOK  %+v", 200, o.Payload)
 }
 
-func (o *PostAppsAppRoutesCreated) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+func (o *PostAppsAppRoutesOK) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
 
 	o.Payload = new(models.RouteWrapper)
 
@@ -89,7 +89,7 @@ func NewPostAppsAppRoutesBadRequest() *PostAppsAppRoutesBadRequest {
 
 /*PostAppsAppRoutesBadRequest handles this case with default header values.
 
-One or more of the routes were invalid due to parameters being missing or invalid.
+Invalid route due to parameters being missing or invalid.
 */
 type PostAppsAppRoutesBadRequest struct {
 	Payload *models.Error
@@ -111,24 +111,24 @@ func (o *PostAppsAppRoutesBadRequest) readResponse(response runtime.ClientRespon
 	return nil
 }
 
-// NewPostAppsAppRoutesInternalServerError creates a PostAppsAppRoutesInternalServerError with default headers values
-func NewPostAppsAppRoutesInternalServerError() *PostAppsAppRoutesInternalServerError {
-	return &PostAppsAppRoutesInternalServerError{}
+// NewPostAppsAppRoutesConflict creates a PostAppsAppRoutesConflict with default headers values
+func NewPostAppsAppRoutesConflict() *PostAppsAppRoutesConflict {
+	return &PostAppsAppRoutesConflict{}
 }
 
-/*PostAppsAppRoutesInternalServerError handles this case with default header values.
+/*PostAppsAppRoutesConflict handles this case with default header values.
 
-Could not accept routes due to internal error.
+Route already exists.
 */
-type PostAppsAppRoutesInternalServerError struct {
+type PostAppsAppRoutesConflict struct {
 	Payload *models.Error
 }
 
-func (o *PostAppsAppRoutesInternalServerError) Error() string {
-	return fmt.Sprintf("[POST /apps/{app}/routes][%d] postAppsAppRoutesInternalServerError  %+v", 500, o.Payload)
+func (o *PostAppsAppRoutesConflict) Error() string {
+	return fmt.Sprintf("[POST /apps/{app}/routes][%d] postAppsAppRoutesConflict  %+v", 409, o.Payload)
 }
 
-func (o *PostAppsAppRoutesInternalServerError) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+func (o *PostAppsAppRoutesConflict) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
 
 	o.Payload = new(models.Error)
 
