@@ -24,6 +24,8 @@ package functions
 
 import (
 	"bytes"
+	"crypto/tls"
+	"os"
 	"fmt"
 	"path/filepath"
 	"reflect"
@@ -36,6 +38,8 @@ import (
 type APIClient struct {
 	config *Configuration
 }
+
+var SSL_SKIP_VERIFY = (os.Getenv("SSL_SKIP_VERIFY") == "true")
 
 func (c *APIClient) SelectHeaderContentType(contentTypes []string) string {
 
@@ -121,6 +125,7 @@ func (c *APIClient) prepareClient() *resty.Client {
 
 	rClient := resty.New()
 
+	rClient.SetTLSClientConfig(&tls.Config{InsecureSkipVerify: SSL_SKIP_VERIFY})
 	rClient.SetDebug(c.config.Debug)
 	if c.config.Transport != nil {
 		rClient.SetTransport(c.config.Transport)
