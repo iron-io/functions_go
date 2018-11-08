@@ -26,7 +26,7 @@ import (
 	"bytes"
 	"crypto/tls"
 	"fmt"
-	"github.com/go-resty/resty"
+	"gopkg.in/resty.v1"
 	"io/ioutil"
 	"net/url"
 	"os"
